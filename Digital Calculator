@@ -1,0 +1,82 @@
+import tkinter
+import tkinter as tk
+import tkinter.messagebox
+from tkinter.constants import SUNKEN
+from tkinter import *
+
+root = tk.Tk()
+root.title('Calculator')
+#root.iconphoto(False, tkinter.PhotoImage(file="cc.ico"))
+root.geometry("220x260+800+100")
+
+frame = tk.Frame(master=root, bg = "skyblue", padx=10)
+frame.pack()
+entry = tk.Entry(master=frame, relief=SUNKEN, borderwidth=4, width=30)
+entry.grid(row=0, column=0, columnspan=3, ipadx=2, pady=2)
+
+def myclick(number):
+    entry.insert(tk.END, number)
+
+def equal():
+    try:
+        y = str(eval(entry.get()))
+        entry.delete(0, tk.END)
+        entry.insert(0, y)
+    except:
+        tkinter.messagebox.showinfo("Error", "Syntax Error")
+
+def clear():
+    entry.delete(0, tk.END)
+
+button_1 = tk.Button(master=frame, text="1", padx=10, pady=5, width=2, command=lambda: myclick(1))
+button_1.grid(row=1, column=0, pady=2)
+
+button_1 = tk.Button(master=frame, text="2", padx=10, pady=5, width=2, command=lambda: myclick(2))
+button_1.grid(row=1, column=1, pady=2)
+
+button_1 = tk.Button(master=frame, text="3", padx=10, pady=5, width=2, command=lambda: myclick(3))
+button_1.grid(row=1, column=2, pady=2)
+
+
+button_1 = tk.Button(master=frame, text="4", padx=10, pady=5, width=2, command=lambda: myclick(4))
+button_1.grid(row=2, column=0, pady=2)
+
+button_1 = tk.Button(master=frame, text="5", padx=10, pady=5, width=2, command=lambda: myclick(5))
+button_1.grid(row=2, column=1, pady=2)
+
+button_1 = tk.Button(master=frame, text="6", padx=10, pady=5, width=2, command=lambda: myclick(6))
+button_1.grid(row=2, column=2, pady=2)
+
+button_1 = tk.Button(master=frame, text="7", padx=10, pady=5, width=2, command=lambda: myclick(7))
+button_1.grid(row=3, column=0, pady=2)
+
+button_1 = tk.Button(master=frame, text="8", padx=10, pady=5, width=2, command=lambda: myclick(8))
+button_1.grid(row=3, column=1, pady=2)
+
+button_1 = tk.Button(master=frame, text="9", padx=10, pady=5, width=2, command=lambda: myclick(9))
+button_1.grid(row=3, column=2, pady=2)
+
+button_0 = tk.Button(master=frame, text="0", padx=10, pady=5, width=2, command=lambda: myclick(0))
+button_0.grid(row=4, column=1, pady=2)
+
+button_add = tk.Button(master=frame, text="+", padx=10, pady=5, width=3, command=lambda: myclick("+"))
+button_add.grid(row=5, column=0, pady=2)
+
+button_subtract = tk.Button(master=frame, text="-", padx=10, pady=5, width=3, command=lambda: myclick("-"))
+button_subtract.grid(row=5, column=1, pady=2)
+
+button_multiply = tk.Button(master=frame, text="*", padx=10, pady=5, width=3, command=lambda: myclick("*"))
+button_multiply.grid(row=5, column=2, pady=2)
+
+button_division = tk.Button(master=frame, text="/", padx=10, pady=5, width=3, command=lambda: myclick("/"))
+button_division.grid(row=6, column=0, pady=2)
+
+button_clear = tk.Button(master=frame, text="clear", padx=10, pady=5, width=3, command=clear)
+button_clear.grid(row=6, column=1, pady=2)
+
+button_equal = tk.Button(master=frame, text="=", padx=10, pady=5, width=3, command=equal)
+button_equal.grid(row=6, column=2, pady=2)
+
+
+
+root.mainloop()

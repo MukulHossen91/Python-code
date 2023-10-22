@@ -1,0 +1,33 @@
+#Yearly create Calendar
+
+from tkinter import *
+import calendar
+
+def showcal():
+    root = Tk()
+    root.config(background= 'green')
+    root.title("CALENDAR")
+    root.geometry("800x800")
+    fetch_year = int(year_field.get())
+    cal_content = calendar.calendar(fetch_year)
+    cal_year = Label(root, text=cal_content, font=('Arial', 20, 'bold'))
+    cal_year.grid(row= 5, column= 1, padx= 20)
+    root.mainloop()
+
+
+if __name__=="__main__" :
+    gui = Tk()
+    gui.config(background="white")
+    gui.title("CALENDAR")
+    gui.geometry("250x140")
+    cal = Label(gui, text="CALENDAR", bg="dark gray", font=('times', 28, 'bold'))
+    year = Label(gui, text= "Entry Year", bg="light green")
+    year_field = Entry(gui)
+    show = Button(gui, text="Show Calendar", fg= "Black", bg="Red", command= showcal)
+    Exit = Button(gui, text= "Exit", fg="Black", bg="Red", command= exit)
+    cal.grid(row=1, column= 1)
+    year.grid(row=2, column=1)
+    year_field.grid(row=3, column=1)
+    show.grid(row=4, column=1)
+    Exit.grid(row=6, column=1)
+    gui.mainloop()

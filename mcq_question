@@ -1,0 +1,48 @@
+questions = ("How many district in bangladesh? ",
+             "How many division in bangladesh? ",
+             "Name of prime minster of bangladesh? ",
+             "How many seat of parliament in bangladesh? ")
+
+options = (
+    ("A. 70", "B. 65", "C. 64", "D. 62"),
+    ("A. 8", "B. 9", "C. 10", "D. 7"),
+    ("A. Khaleda", "B. Hasina", "C. Tanvir", "D. Murad"),
+    ("A. 300", "B. 320", "C. 350", "D. 360"))
+
+answers = ("C", "A", "B", "C")
+guesses = []
+score = 0
+question_num = 0
+
+for question in questions:
+    print("------------------------")
+    print(question)
+    for option in options[question_num]:
+        print(option)
+
+    guess = input("Enter (A, B, C, D): ").upper()
+    guesses.append(guess)
+    if guess == answers[question_num]:
+        score += 1
+        print("CORRECT!")
+    else:
+        print("INCORRECT!")
+        print(f"{answers[question_num]} is the correct answer")
+    question_num += 1
+
+print("------------------------")
+print("          Result        ")
+print("------------------------")
+
+print("answers: ", end="")
+for answer in answers:
+    print(answer, end=" ")
+print()
+
+print("guesses: ", end=" ")
+for guess in guesses:
+    print(guess, end=" ")
+print()
+
+score = int(score/len(questions)*100)
+print(f"your score is : {score}%")

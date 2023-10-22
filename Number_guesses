@@ -1,1 +1,15 @@
+import random
 
+Randomnumber = random.randrange(1,100)
+print(Randomnumber)    # matched korar jonno surute Randomnumber boledibe
+userinput = int(input("guess the number:"))
+
+if userinput>Randomnumber:
+    print(Randomnumber)
+    print("the number is High")
+elif userinput<Randomnumber:
+    print(Randomnumber)
+    print("the number is Low")
+else:
+    print(Randomnumber)
+    print("Yes, the number is matched")

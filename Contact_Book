@@ -1,0 +1,83 @@
+class Contact:
+    def __init__(self, name, phone, email, district):
+        self.name = name
+        self.phone = phone
+        self.email = email
+        self.district = district
+
+class ContactBook:
+    def __init__(self):
+        self.contacts = []
+
+    def add_contact(self, contact):
+        self.contacts.append(contact)
+        print("Contact added successfully.")
+
+    def remove_contact(self, contact):
+        if contact in self.contacts:
+            self.contacts.remove(contact)
+            print("Contact removed successfully.")
+        else:
+            print("Contact not found.")
+
+    def search_contact(self, name):
+        for contact in self.contacts:
+            if contact.name.lower() == name.lower():
+                return contact
+        return None
+
+    def display_contacts(self):
+        if len(self.contacts) > 0:
+            print("Contact List:")
+            for contact in self.contacts:
+                print(f"Name: {contact.name}, Phone: {contact.phone}, Email: {contact.email}, District: {contact.district}")
+        else:
+            print("Contact book is empty.")
+
+# Create a contact book instance
+contact_book = ContactBook()
+
+# Menu loop
+while True:
+    print("\nContact Book Menu:")
+    print("1. Add Contact")
+    print("2. Remove Contact")
+    print("3. Search Contact")
+    print("4. Display Contacts")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1-5): ")
+
+    if choice == '1':
+        name = input("Enter name: ")
+        phone = input("Enter phone number: ")
+        email = input("Enter email: ")
+        district = input("Enter your district: ")
+        contact = Contact(name, phone, email, district)
+        contact_book.add_contact(contact)
+
+    elif choice == '2':
+        name = input("Enter name to remove: ")
+        contact = contact_book.search_contact(name)
+        if contact:
+            contact_book.remove_contact(contact)
+        else:
+            print("Contact not found.")
+
+    elif choice == '3':
+        name = input("Enter name to search: ")
+        contact = contact_book.search_contact(name)
+        if contact:
+            print(f"Name: {contact.name}, Phone: {contact.phone}, Email: {contact.email}, District: {contact.district}")
+        else:
+            print("Contact not found.")
+
+    elif choice == '4':
+        contact_book.display_contacts()
+
+    elif choice == '5':
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice. Please enter a number from 1 to 5.")

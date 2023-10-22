@@ -1,0 +1,91 @@
+import pymysql
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+import _tkinter as tk
+
+#connection later
+def connection():
+    conn=pymysql.connect(host='localhost', user='root', password='',db='student_db')
+    return conn
+
+def refreshTable():
+    for data in my_tree.get_children():
+        my_tree.delete(data)
+
+    for array in read():
+        my_tree.insert(parent='', index='end',iid=array,text='',values=(array),tag='orow')
+
+    my_tree.tag_configure('orow', background='#FFFFFF',font=('Arial',12))
+    my_tree.grid(row=8,column=0,columnspan=5,rowspan=11,padx=10,pady=20)
+
+
+#gui
+root = Tk()
+root.title("Student Registration System")
+root.geometry("1080x720")
+my_tree = ttk.Treeview(root)
+
+label = Label(root, text="Student Registration System (CRUD MATRIX)", font=('Arial Bold', 25))
+label.grid(row=0,column=0,columnspan=8, rowspan=2, padx=50, pady=40)
+
+studidLabel=Label(root, text="Student_ID", font=("Arial, 20"))
+fnameLabel=Label(root, text="First_Name", font=("Arial, 20"))
+lnameLabel=Label(root, text="Last_Name", font=("Arial, 20"))
+phoneLabel=Label(root, text="Phone_Number", font=("Arial, 20"))
+addressLabel=Label(root, text="Address", font=("Arial, 20"))
+
+
+studidLabel.grid(row=3,column=0, columnspan=1,padx=50, pady=5)
+fnameLabel.grid(row=4,column=0, columnspan=1,padx=50, pady=5)
+lnameLabel.grid(row=5,column=0, columnspan=1,padx=50, pady=5)
+phoneLabel.grid(row=6,column=0, columnspan=1,padx=50, pady=5)
+addressLabel.grid(row=7,column=0, columnspan=1,padx=50, pady=5)
+
+#text variable later
+studidEntry=Entry(root, width=55, bd=5, font=("Arial", 15))
+fnameEntry=Entry(root, width=55, bd=5, font=("Arial", 15))
+lnameEntry=Entry(root, width=55, bd=5, font=("Arial", 15))
+phoneEntry=Entry(root, width=55, bd=5, font=("Arial", 15))
+addressEntry=Entry(root, width=55, bd=5, font=("Arial", 15))
+
+studidEntry.grid(row=3, column=1, columnspan=4, padx=5, pady=0)
+fnameEntry.grid(row=4, column=1, columnspan=4, padx=5, pady=0)
+lnameEntry.grid(row=5, column=1, columnspan=4, padx=5, pady=0)
+phoneEntry.grid(row=6, column=1, columnspan=4, padx=5, pady=0)
+addressEntry.grid(row=7, column=1, columnspan=4, padx=5, pady=0)
+
+#command latter
+addBtn=Button(root,text="Add", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="cyan")
+updateBtn=Button(root,text="Update", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="gray")
+deleteBtn=Button(root,text="Delete", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="#6a5acd")
+searchBtn=Button(root,text="Search", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="#3cb371")
+resetBtn=Button(root,text="Reset", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="#ee82ee")
+selectBtn=Button(root,text="Select", padx=65,pady=25,width=10, bd=5,font=("Arial", 15), bg="cyan")
+
+addBtn.grid(row=3, column=5,columnspan=1,rowspan=2)
+updateBtn.grid(row=5, column=5,columnspan=1,rowspan=2)
+deleteBtn.grid(row=7, column=5,columnspan=1,rowspan=2)
+searchBtn.grid(row=9, column=5,columnspan=1,rowspan=2)
+resetBtn.grid(row=11, column=5,columnspan=1,rowspan=2)
+selectBtn.grid(row=13, column=5,columnspan=1,rowspan=2)
+
+style=ttk.Style()
+style.configure("Treeview.Heading", font=("Arial Bold", 15))
+my_tree['columns']=("Student_ID","First_Name","Last_Name", "Phone", "Address")
+
+my_tree.column("#0",width=0,stretch=NO)
+my_tree.column("Student_ID",anchor=W,width=170)
+my_tree.column("First_Name",anchor=W,width=150)
+my_tree.column("Last_Name",anchor=W,width=150)
+my_tree.column("Phone",anchor=W,width=165)
+my_tree.column("Address",anchor=W,width=150)
+
+my_tree.heading("Student_ID",text="Student_ID", anchor=W)
+my_tree.heading("First_Name",text="First_Name", anchor=W)
+my_tree.heading("Last_Name",text="Last_Name", anchor=W)
+my_tree.heading("Phone",text="Phone", anchor=W)
+my_tree.heading("Address",text="Address", anchor=W)
+
+
+root.mainloop()
